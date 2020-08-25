@@ -78,7 +78,7 @@ abstract class AbstractSettingsManager implements SettingsManagerContract
      */
     public function get(string $path = null, $default = null)
     {
-        return $path ? $this->castSettingsAttribute($path, Arr::get($this->all(), $path, $default)) : $this->all();
+        return $path ? $this->model->castSettingsAttribute($path, Arr::get($this->all(), $path, $default)) : $this->all();
     }
 
     /**
