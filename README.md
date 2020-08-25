@@ -60,6 +60,7 @@ Bug reports, feature requests, and pull requests can be submitted by following o
     - [Check if the model has a specific setting](#check)
     - [Remove a setting from a model](#remove)
     - [Persistence](#persistence)
+    - [Casting](#casting)
  - [Changelog](#changelog)
  - [Contributing](#contributing)
 - [License](#license)
@@ -231,6 +232,27 @@ MODEL_SETTINGS_PERSISTENT=true
 'settings_persistent' => env('MODEL_SETTINGS_PERSISTENT', true),
 ```
 If the persistence is `false` you have to save the model after the operation.
+
+#### Casting <a name="casting"></a>
+To cast certain fields in your settings, like the `Model::$casts` feature, add the path
+to your models `$casts` property and add a prefix of `settings.`.
+
+```php
+   ...
+   $protected $casts = [
+       'settings.some.setting' => 'datetime',
+       'settings.some.different_setting' => 'array'
+   ];
+   ...
+```
+
+This works also with Laravel 7's custom casts
+
+```php
+    $protected $casts = [
+        'secret' => EncryptCast::class,
+    ];
+```
 
 ## Changelog <a name="changelog"></a>
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

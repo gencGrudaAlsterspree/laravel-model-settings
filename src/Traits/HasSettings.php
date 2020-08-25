@@ -16,6 +16,14 @@ trait HasSettings
         return [];
     }
 
+    public function castSettingsAttribute($path, $value)
+    {
+        if($value && $this->hasCast(($attribute = 'settings.' . $path))) {
+            return $this->castAttribute($attribute, $value);
+        }
+        return $value;
+    }
+
     abstract public function getSettingsValue(): array;
 
     abstract public function settings(): AbstractSettingsManager;
